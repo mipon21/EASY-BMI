@@ -25,6 +25,7 @@ class ResultPage extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Get.back();
+                    bmicontroller.Height.value = 120 ;
                   },
                   child: Row(
                     children: [

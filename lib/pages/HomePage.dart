@@ -76,6 +76,10 @@ class Homepage extends StatelessWidget {
                       child: Obx(() {
                         return Column(
                           children: [
+                            bmicontroller.heightUnit.value == "CM"
+                                ? HeightSelector()  // CM height selector
+                                : HeightSelectorFeet(), 
+                            SizedBox(height: 10),
                             Padding(
                               padding: const EdgeInsets.only(right: 4),
                               child: Row(
@@ -90,15 +94,14 @@ class Homepage extends StatelessWidget {
                                   Secoundarybtn(
                                       onPressed: () {
                                         bmicontroller.heightUnit.value = "FT";
+                                        bmicontroller.Height.value = 120.0;
                                       },
                                       btnName: "FT"),
                                 ],
                               ),
                             ),
-                            SizedBox(height: 10),
-                            bmicontroller.heightUnit.value == "CM"
-                                ? HeightSelector()  // CM height selector
-                                : HeightSelectorFeet()  // Feet and inches height selector
+                        
+       // Feet and inches height selector
                           ],
                         );
                       }),

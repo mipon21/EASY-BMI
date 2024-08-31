@@ -10,9 +10,7 @@ class Secoundarybtn extends StatelessWidget {
   final VoidCallback onPressed;
 
   const Secoundarybtn(
-      {super.key,
-        required this.btnName,
-        required this.onPressed});
+      {super.key, required this.btnName, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -21,34 +19,40 @@ class Secoundarybtn extends StatelessWidget {
     return InkWell(
         onTap: onPressed,
         child: Obx(
-              () => Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                btnName.text
-                    .letterSpacing(1.5)
-                    .bold
-                    .color(bmicontroller.heightUnit.value == btnName
-                    ? Colors.white
-                    : Colors.black,)
-                    .make()
-
-              ],
+          () => Expanded(
+            child: Container(
+              width: 85,
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    btnName.text
+                        .letterSpacing(1.5)
+                        .bold
+                        .color(
+                          bmicontroller.heightUnit.value == btnName
+                              ? Colors.white
+                              : Colors.black,
+                        )
+                        .make()
+                  ],
+                ),
+              ),
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  color: bmicontroller.heightUnit.value == btnName
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(10)),
             ),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-                color: bmicontroller.heightUnit.value == btnName
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.white,
-                borderRadius: BorderRadius.circular(10)),
           ),
         ));
   }
