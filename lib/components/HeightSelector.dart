@@ -16,18 +16,6 @@ class HeightSelector extends StatelessWidget {
     return Expanded(
       child: Container(
         padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primaryContainer,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
         child: Column(
           children: [
             Row(
@@ -58,7 +46,6 @@ class HeightSelector extends StatelessWidget {
                 },
               ),
             )),
-
           ],
         ),
       ),

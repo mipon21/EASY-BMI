@@ -74,35 +74,46 @@ class Homepage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Obx(() {
-                        return Column(
-                          children: [
-                            bmicontroller.heightUnit.value == "CM"
-                                ? HeightSelector()  // CM height selector
-                                : HeightSelectorFeet(), 
-                            SizedBox(height: 10),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Secoundarybtn(
-                                      onPressed: () {
-                                        bmicontroller.heightUnit.value = "CM";
-                                      },
-                                      btnName: "CM"),
-                                  SizedBox(width: 5),
-                                  Secoundarybtn(
-                                      onPressed: () {
-                                        bmicontroller.heightUnit.value = "FT";
-                                        bmicontroller.Height.value = 120.0;
-                                      },
-                                      btnName: "FT"),
-                                ],
+                        return Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color:
+                                Theme.of(context).colorScheme.primaryContainer,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3),
                               ),
-                            ),
-                        
-       // Feet and inches height selector
-                          ],
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              bmicontroller.heightUnit.value == "CM"
+                                  ? HeightSelector() // CM height selector
+                                  : HeightSelectorFeet(),
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Secoundarybtn(
+                                        onPressed: () {
+                                          bmicontroller.heightUnit.value = "CM";
+                                        },
+                                        btnName: "CM"),
+                                    SizedBox(width: 5),
+                                    Secoundarybtn(
+                                        onPressed: () {
+                                          bmicontroller.heightUnit.value = "FT";
+                                          bmicontroller.Height.value = 120.0;
+                                        },
+                                        btnName: "FT"),
+                                  ],
+                                ),
+                            ],
+                          ),
                         );
                       }),
                     ),
@@ -137,4 +148,3 @@ class Homepage extends StatelessWidget {
     );
   }
 }
-

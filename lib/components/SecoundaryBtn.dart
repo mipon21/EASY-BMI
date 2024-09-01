@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/controllers/BmiController.dart';
+import 'package:myapp/controllers/ThemeControler.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Secoundarybtn extends StatelessWidget {
@@ -15,45 +16,52 @@ class Secoundarybtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Bmicontroller bmicontroller = Get.put(Bmicontroller());
-
-    return InkWell(
-        onTap: onPressed,
-        child: Obx(
-          () => Expanded(
-            child: Container(
-              width: 85,
-              child: Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    btnName.text
-                        .letterSpacing(1.5)
-                        .bold
-                        .color(
-                          bmicontroller.heightUnit.value == btnName
-                              ? Colors.white
-                              : Colors.black,
-                        )
-                        .make()
-                  ],
+    Themecontroler themecontroler = Get.put(Themecontroler());
+    return Expanded(
+      child: InkWell(
+          onTap: onPressed,
+          child: Obx(
+            () => Expanded(
+              child: Container(
+                child: Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      btnName.text
+                          .letterSpacing(1.5)
+                          .bold
+                          .color(
+                            bmicontroller.heightUnit.value == btnName
+                                ? Colors.white
+                                : Colors.black,
+                          )
+                          .make()
+                    ],
+                  ),
                 ),
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      themecontroler.isDark.value ? 
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      ) : BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      )
+                    ],
+                    color: bmicontroller.heightUnit.value == btnName
+                        ? Theme.of(context).colorScheme.primary
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
               ),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                  color: bmicontroller.heightUnit.value == btnName
-                      ? Theme.of(context).colorScheme.primary
-                      : Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }
