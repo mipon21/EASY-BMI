@@ -48,7 +48,7 @@ class WeightSelector extends StatelessWidget {
                           .text
                           .size(55)
                           .bold
-                          .color(Theme.of(context).colorScheme.onBackground)
+                          .color(Theme.of(context).colorScheme.onSurface)
                           .make())
                     ],
                   ),

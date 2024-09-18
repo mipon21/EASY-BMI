@@ -44,7 +44,7 @@ class Homepage extends StatelessWidget {
                   "BMI Calculator"
                       .text
                       .xl4
-                      .color(Theme.of(context).colorScheme.onBackground)
+                      .color(Theme.of(context).colorScheme.onSurface)
                       .bold
                       .make(),
                 ],
