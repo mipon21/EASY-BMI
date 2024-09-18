@@ -5,9 +5,16 @@ import 'package:myapp/controllers/BmiController.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class HeightSelectorFeet extends StatelessWidget {
+class HeightSelectorFeet extends StatefulWidget {
   HeightSelectorFeet({super.key});
+
+  @override
+  State<HeightSelectorFeet> createState() => _HeightSelectorFeetState();
+}
+
+class _HeightSelectorFeetState extends State<HeightSelectorFeet> {
   Bmicontroller bmicontroller = Get.put(Bmicontroller());
+
   @override
   Widget build(BuildContext context) {
     return Expanded(

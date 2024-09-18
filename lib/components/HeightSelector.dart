@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:myapp/components/HeightSelector_feet.dart';
 import 'package:myapp/controllers/BmiController.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'SecoundaryBtn.dart';
 
-class HeightSelector extends StatelessWidget {
+class HeightSelector extends StatefulWidget {
   HeightSelector({super.key});
+
+  @override
+  State<HeightSelector> createState() => _HeightSelectorState();
+}
+
+class _HeightSelectorState extends State<HeightSelector> {
   Bmicontroller bmicontroller = Get.put(Bmicontroller());
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
