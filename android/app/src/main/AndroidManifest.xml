@@ -3,7 +3,7 @@
     <uses-permission android:name="ACCESS_NETWORK_STATE"/>
       
     <application
-        android:label="BMI Calculator"
+        android:label="EASY BMI"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

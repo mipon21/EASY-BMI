@@ -47,7 +47,7 @@ class _HomepageState extends State<Homepage> {
               ),
               Row(
                 children: [
-                  "BMI Calculator"
+                  "EASY BMI"
                       .text
                       .xl4
                       .color(Theme.of(context).colorScheme.onSurface)
