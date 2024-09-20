@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:myapp/components/SecBtn.dart';
 import 'package:myapp/controllers/BmiController.dart';
 import 'package:velocity_x/velocity_x.dart';

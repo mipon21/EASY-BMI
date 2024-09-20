@@ -2,22 +2,28 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myapp/components/AgeSelector.dart';
-import 'package:myapp/components/HeightSelector.dart';
-import 'package:myapp/components/HeightSelector_feet.dart';
-import 'package:myapp/components/PrimaryBtn.dart';
-import 'package:myapp/components/RactBtn.dart';
-import 'package:myapp/components/SecoundaryBtn.dart';
-import 'package:myapp/components/ThemeChangerBtn.dart';
-import 'package:myapp/components/WeightSelector.dart';
-import 'package:myapp/controllers/BmiController.dart';
-import 'package:myapp/controllers/ThemeControler.dart';
-import 'package:myapp/pages/ResultPage.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class Homepage extends StatelessWidget {
+import '../components/AgeSelector.dart';
+import '../components/HeightSelector.dart';
+import '../components/HeightSelector_feet.dart';
+import '../components/PrimaryBtn.dart';
+import '../components/RactBtn.dart';
+import '../components/SecoundaryBtn.dart';
+import '../components/ThemeChangerBtn.dart';
+import '../components/WeightSelector.dart';
+import '../controllers/BmiController.dart';
+import '../controllers/ThemeControler.dart';
+import 'ResultPage.dart';
+
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     Themecontroler themecontroler = Get.put(Themecontroler());
@@ -73,49 +79,53 @@ class Homepage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      child: Obx(() {
-                        return Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).colorScheme.primaryContainer,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              bmicontroller.heightUnit.value == "CM"
-                                  ? HeightSelector() // CM height selector
-                                  : HeightSelectorFeet(),
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Secoundarybtn(
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color:
+                          Theme.of(context).colorScheme.primaryContainer,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            bmicontroller.heightUnit.value == "CM"
+                                ? HeightSelector() // CM height selector
+                                : HeightSelectorFeet(),
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  child: Secoundarybtn(
+                                      onPressed: () {
+                                        setState(() {});
+                                        bmicontroller.heightUnit.value = "CM";
+                                      },
+                                      btnName: "CM"),
+                                ),
+                                SizedBox(width: 10),
+                                Expanded(
+                                    child: Secoundarybtn(
                                         onPressed: () {
-                                          bmicontroller.heightUnit.value = "CM";
-                                        },
-                                        btnName: "CM"),
-                                    SizedBox(width: 5),
-                                    Secoundarybtn(
-                                        onPressed: () {
+                                          setState(() {});
                                           bmicontroller.heightUnit.value = "FT";
                                           bmicontroller.Height.value = 120.0;
                                         },
                                         btnName: "FT"),
-                                  ],
-                                ),
-                            ],
-                          ),
-                        );
-                      }),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
                     ),
                     SizedBox(width: 10),
                     Expanded(

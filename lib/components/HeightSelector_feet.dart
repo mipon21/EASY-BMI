@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myapp/controllers/BmiController.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../controllers/BmiController.dart';
 
 class HeightSelectorFeet extends StatefulWidget {
   HeightSelectorFeet({super.key});
@@ -18,6 +19,7 @@ class _HeightSelectorFeetState extends State<HeightSelectorFeet> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
+        height: 250,
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
@@ -49,25 +51,25 @@ class _HeightSelectorFeetState extends State<HeightSelectorFeet> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Obx(() => SfSlider.vertical(
-                        min: 0.0,
-                        max: 10.0,
-                        value: bmicontroller.Feet.value,
-                        interval: 1,
-                        showTicks: true,
-                        showLabels: true,
-                        enableTooltip: true,
-                        tooltipPosition: SliderTooltipPosition.right,
-                        minorTicksPerInterval: 5,
-                        inactiveColor:
-                        Theme.of(context).colorScheme.primary.withOpacity(0.2),
-                        activeColor: Theme.of(context).colorScheme.primary,
-                        onChanged: (dynamic value) {
-                          bmicontroller.Feet.value = value;
-                        },
-                      ),
+                    SfSlider.vertical(
+                      min: 0.0,
+                      max: 10.0,
+                      value: bmicontroller.Feet.value,
+                      interval: 1,
+                      showTicks: true,
+                      showLabels: true,
+                      enableTooltip: true,
+                      tooltipPosition: SliderTooltipPosition.right,
+                      minorTicksPerInterval: 5,
+                      inactiveColor:
+                      Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                      activeColor: Theme.of(context).colorScheme.primary,
+                      onChanged: (dynamic value) {
+                        setState(() {});
+                        bmicontroller.Feet.value = value;
+                      },
                     ),
-                    Obx(() => SfSlider.vertical(
+                    SfSlider.vertical(
                       min: 0.0,
                       max: 11.0,
                       value: bmicontroller.Ince.value,
@@ -80,10 +82,10 @@ class _HeightSelectorFeetState extends State<HeightSelectorFeet> {
                       Theme.of(context).colorScheme.primary.withOpacity(0.2),
                       activeColor: Theme.of(context).colorScheme.primary,
                       onChanged: (dynamic value) {
+                        setState(() {});
                         bmicontroller.Ince.value = value;
                       },
                     ),
-                    )
                   ],
                 ),
               ),
