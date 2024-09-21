@@ -47,7 +47,7 @@ class _HomepageState extends State<Homepage> {
               ),
               Row(
                 children: [
-                  "EASY BMI 😊"
+                   "EASY BMI"
                       .text
                       .xl4
                       .color(Theme.of(context).colorScheme.onSurface)
