@@ -38,7 +38,34 @@ class WeightSelector extends StatelessWidget {
               ],
             ),
             Expanded(
-              child: Column(
+              child: !context.isMobile ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Obx(() => "${bmicontroller.Weight.value}"
+                          .text
+                          .size(55)
+                          .bold
+                          .color(Theme.of(context).colorScheme.onSurface)
+                          .make())
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SecBtn(onPressed: (){
+                        bmicontroller.Weight.value++;
+                      }, icon: Icons.add),
+                      SizedBox(width: 10),
+                      SecBtn(onPressed: (){
+                        bmicontroller.Weight.value--;
+                      }, icon: Icons.remove)
+                    ],)
+                ],
+              )
+                  : Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(
@@ -64,7 +91,7 @@ class WeightSelector extends StatelessWidget {
                       }, icon: Icons.remove)
                     ],)
                 ],
-              ),
+              )
             ),
           ],
         ),

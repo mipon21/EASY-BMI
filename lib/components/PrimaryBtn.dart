@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/controllers/BmiController.dart';
+import 'package:myapp/controllers/ThemeControler.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class PrimaryBtn extends StatelessWidget {
@@ -19,7 +20,7 @@ class PrimaryBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Bmicontroller bmicontroller = Get.put(Bmicontroller());
-
+    Themecontroler themecontroler = Get.put(Themecontroler());
     return Expanded(
       child: InkWell(
           onTap: onPressed,
@@ -47,7 +48,25 @@ class PrimaryBtn extends StatelessWidget {
                 ],
               ),
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              decoration: BoxDecoration(
+              decoration: !context.isMobile ? BoxDecoration(
+                  boxShadow: [
+                    themecontroler.isDark.value ?
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    ) : BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
+                    )
+                  ],
+                  color: bmicontroller.Gender.value == btnName
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.white,
+                  borderRadius: BorderRadius.circular(10)) : BoxDecoration(
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.2),
@@ -59,7 +78,7 @@ class PrimaryBtn extends StatelessWidget {
                   color: bmicontroller.Gender.value == btnName
                       ? Theme.of(context).colorScheme.primary
                       : Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(10))
             ),
           )),
     );

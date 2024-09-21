@@ -34,7 +34,7 @@ class _HeightSelectorState extends State<HeightSelector> {
               ],
             ),
             Expanded(
-              child: SfSlider.vertical(
+              child: !context.isMobile ? SfSlider(
                 min: 120.0,
                 max: 250.0,
                 value: bmicontroller.Height.value,
@@ -50,7 +50,24 @@ class _HeightSelectorState extends State<HeightSelector> {
                   setState(() {});
                   bmicontroller.Height.value = value;
                 },
-              ),
+              )
+                  : SfSlider.vertical(
+                min: 120.0,
+                max: 250.0,
+                value: bmicontroller.Height.value,
+                interval: 25,
+                showTicks: true,
+                showLabels: true,
+                enableTooltip: true,
+                minorTicksPerInterval: 5,
+                inactiveColor:
+                Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                activeColor: Theme.of(context).colorScheme.primary,
+                onChanged: (dynamic value) {
+                  setState(() {});
+                  bmicontroller.Height.value = value;
+                },
+              )
             ),
           ],
         ),

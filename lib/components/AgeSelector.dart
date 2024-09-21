@@ -38,7 +38,34 @@ class AgeSelector extends StatelessWidget {
               ],
             ),
             Expanded(
-              child: Column(
+              child: !context.isMobile ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Obx(() => "${bmicontroller.Age.value}"
+                          .text
+                          .size(55)
+                          .bold
+                          .color(Theme.of(context).colorScheme.onSurface)
+                          .make())
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SecBtn(onPressed: (){
+                        bmicontroller.Age.value++;
+                      }, icon: Icons.add),
+                      SizedBox(width: 10),
+                      SecBtn(onPressed: (){
+                        bmicontroller.Age.value--;
+                      }, icon: Icons.remove)
+                    ],)
+                ],
+              )
+                  : Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(

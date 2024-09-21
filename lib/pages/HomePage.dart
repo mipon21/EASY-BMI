@@ -38,7 +38,7 @@ class _HomepageState extends State<Homepage> {
               ThemeChangeBtn(),
               Row(
                 children: [
-                  "Welcome 😊"
+                  "Welcome to"
                       .text
                       .xl
                       .color(Theme.of(context).colorScheme.onSecondaryContainer)
@@ -47,7 +47,7 @@ class _HomepageState extends State<Homepage> {
               ),
               Row(
                 children: [
-                  "BMI Calculator"
+                  "EASY BMI 😊"
                       .text
                       .xl4
                       .color(Theme.of(context).colorScheme.onSurface)
@@ -75,82 +75,104 @@ class _HomepageState extends State<Homepage> {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
                   children: [
                     Expanded(
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color:
-                          Theme.of(context).colorScheme.primaryContainer,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            bmicontroller.heightUnit.value == "CM"
-                                ? HeightSelector() // CM height selector
-                                : HeightSelectorFeet(),
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  child: Secoundarybtn(
-                                      onPressed: () {
-                                        setState(() {});
-                                        bmicontroller.heightUnit.value = "CM";
-                                      },
-                                      btnName: "CM"),
-                                ),
-                                SizedBox(width: 10),
-                                Expanded(
-                                    child: Secoundarybtn(
-                                        onPressed: () {
-                                          setState(() {});
-                                          bmicontroller.heightUnit.value = "FT";
-                                          bmicontroller.Height.value = 120.0;
-                                        },
-                                        btnName: "FT"),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          WeightSelector(),
-                          SizedBox(height: 10),
-                          AgeSelector()
+                          Expanded(
+                              child: Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primaryContainer,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                bmicontroller.heightUnit.value == "CM"
+                                    ? HeightSelector() // CM height selector
+                                    : HeightSelectorFeet(),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Expanded(
+                                      child: Secoundarybtn(
+                                          onPressed: () {
+                                            setState(() {});
+                                            bmicontroller.heightUnit.value =
+                                                "CM";
+                                          },
+                                          btnName: "CM"),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Expanded(
+                                      child: Secoundarybtn(
+                                          onPressed: () {
+                                            setState(() {});
+                                            bmicontroller.heightUnit.value =
+                                                "FT";
+                                            bmicontroller.Height.value = 120.0;
+                                          },
+                                          btnName: "FT"),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )),
+                          SizedBox(width: 10),
+                          !context.isMobile
+                              ? Container(
+                                  width: 250,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      WeightSelector(),
+                                      SizedBox(height: 10),
+                                      AgeSelector(),
+                                    ],
+                                  ),
+                                )
+                              : Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      WeightSelector(),
+                                      SizedBox(height: 10),
+                                      AgeSelector()
+                                    ],
+                                  ),
+                                )
                         ],
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    MyRactBtn(
+                        onPressed: () {
+                          bmicontroller.CalculateBMI();
+                          Get.to(ResultPage());
+                        },
+                        icon: Icons.done_all_rounded,
+                        btnName: "Let's Go!")
                   ],
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              MyRactBtn(
-                  onPressed: () {
-                    bmicontroller.CalculateBMI();
-                    Get.to(ResultPage());
-                  },
-                  icon: Icons.done_all_rounded,
-                  btnName: "Let's Go!")
             ],
           ),
         ),
